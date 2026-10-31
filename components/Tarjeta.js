@@ -1,10 +1,6 @@
 import { alternarFavorito } from '@/app/acciones';
 import { INSTAGRAM_URL } from '@/lib/config';
-
-export function formatearPrecio(valor) {
-  if (valor === null || valor === undefined) return 'Consultar';
-  return '$' + Number(valor).toFixed(2);
-}
+import { formatearPrecio } from '@/lib/formato';
 
 export default function Tarjeta({ p, favorito = false, conFavoritos = false }) {
   const fondo = p.foto_url ? undefined : { background: `var(--t${p.tono || 1})` };
