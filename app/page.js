@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Catalogo from '@/components/Catalogo';
+import Tarjeta from '@/components/Tarjeta';
+import { DROPS } from '@/lib/drops';
 import { obtenerSesion } from '@/lib/sesion';
 import { listarProductos, listarFavoritos } from '@/lib/productos';
 import { INSTAGRAM_URL, INSTAGRAM_USUARIO } from '@/lib/config';
@@ -12,8 +14,9 @@ export default async function Inicio() {
   return (
     <>
       <section className="wrap hero">
-        <div className="hero-photo" role="img" aria-label="Espacio para la foto de la prenda destacada">
-          <span className="chip">Foto de la prenda destacada</span>
+        <div className="hero-photo">
+          <img src={DROPS[0].preview} alt={`Preview del ${DROPS[0].titulo.toLowerCase()}`} />
+          <span className="chip">{DROPS[0].titulo}</span>
         </div>
         <div className="hero-copy">
           <span className="eyebrow">Ropa vintage y de segunda mano</span>
@@ -30,6 +33,34 @@ export default async function Inicio() {
             </a>
           </div>
         </div>
+      </section>
+
+      <section className="wrap drops" id="drops">
+        <div className="cat-head">
+          <h2>Últimos drops</h2>
+          <span className="sample-note">Tomados de nuestro Instagram</span>
+        </div>
+
+        {DROPS.map((d) => (
+          <div className="drop" key={d.id}>
+            <div className="drop-head">
+              <h3>{d.titulo}</h3>
+              <p>{d.detalle}</p>
+            </div>
+            {d.prendas.length > 0 ? (
+              <div className="grid">
+                {d.prendas.map((p) => (
+                  <Tarjeta key={p.id} p={p} />
+                ))}
+              </div>
+            ) : (
+              <a className="drop-preview" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                <img src={d.preview} alt={`Preview del ${d.titulo.toLowerCase()}`} loading="lazy" />
+                <span className="order">Ver las prendas en Instagram</span>
+              </a>
+            )}
+          </div>
+        ))}
       </section>
 
       <section className="wrap catalog" id="catalogo">
@@ -95,12 +126,14 @@ export default async function Inicio() {
             Seguir en Instagram
           </a>
         </div>
-        <div className="squares" aria-hidden="true">
-          <div style={{ background: 'var(--t1)' }} />
-          <div style={{ background: 'var(--t2)' }} />
-          <div style={{ background: 'var(--t3)' }} />
-          <div style={{ background: 'var(--t4)' }} />
-          <div style={{ background: 'var(--t5)' }} />
+        <div className="squares">
+          {DROPS.flatMap((d) => (d.preview ? [d.preview] : d.prendas.map((p) => p.foto_url)))
+            .slice(0, 5)
+            .map((src) => (
+              <a key={src} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                <img src={src} alt="" loading="lazy" />
+              </a>
+            ))}
         </div>
       </section>
     </>
