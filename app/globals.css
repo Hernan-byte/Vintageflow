@@ -6,7 +6,6 @@
   --muted: #5C5F5A;
   --line: #DDDFDA;
   --accent: #1F4D3A;
-  --danger: #B3261E;
   --on-accent: #FFFFFF;
   --t1: #DCE3DB; --t2: #E6DED3; --t3: #D6DDE4; --t4: #E4D9D9;
   --t5: #DADCCF; --t6: #E3E0D4; --t7: #D9D6E3; --t8: #E0DAD0;
@@ -16,7 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0F1210; --surface: #171B18; --fg: #ECEFEB; --muted: #A2AAA3; --line: #29302B;
-    --accent: #8FD0AB; --on-accent: #0C1A12; --danger: #FF8A80;
+    --accent: #8FD0AB; --on-accent: #0C1A12;
     --t1: #26302A; --t2: #302B25; --t3: #232B33; --t4: #332828;
     --t5: #2A2D23; --t6: #2F2D26; --t7: #29273A; --t8: #2E2A24;
     color-scheme: dark;
@@ -141,8 +140,7 @@ img { max-width: 100%; }
 .campo { display: flex; flex-direction: column; gap: 6px; }
 .campo label { font-size: 0.875rem; font-weight: 600; }
 .campo input { width: 100%; min-height: 48px; padding: 0 14px; font: inherit; font-size: 1rem; color: var(--fg); background: var(--bg); border: 1px solid var(--muted); border-radius: 0; }
-.campo select { width: 100%; min-height: 48px; padding: 0 14px; font: inherit; font-size: 1rem; color: var(--fg); background: var(--bg); border: 1px solid var(--muted); border-radius: 0; }
-.campo input:focus-visible, .campo select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.campo input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 .ayuda { font-size: 0.8125rem; color: var(--muted); }
 .msg { margin: 0; padding: 12px 14px; background: var(--surface); font-size: 0.9375rem; }
 .msg[hidden] { display: none; }
@@ -160,35 +158,3 @@ img { max-width: 100%; }
 .foot span { font-size: 0.875rem; color: var(--muted); }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-/* Panel de la tienda */
-.admin { padding-block: 24px 96px; }
-.admin h1 { font-weight: 800; font-size: clamp(1.9rem, 4vw, 2.5rem); letter-spacing: -0.03em; line-height: 1.1; margin: 8px 0 24px; }
-.admin h2 { font-size: 1.125rem; font-weight: 700; margin: 0 0 16px; }
-.admin-total { color: var(--muted); font-weight: 500; }
-.admin-bloque { border: 1px solid var(--line); padding: 20px; margin-bottom: 24px; }
-@media (min-width: 560px) { .admin-bloque { padding: 28px; } }
-.admin-form { display: grid; grid-template-columns: 1fr; gap: 16px; }
-@media (min-width: 560px) { .admin-form { grid-template-columns: 1fr 1fr; } }
-.admin-form .ancho { grid-column: 1 / -1; }
-.admin-form .campo input[type="file"] { padding: 12px 14px; min-height: 48px; }
-.ayuda { font-size: 0.8125rem; color: var(--muted); }
-.acciones-form { display: flex; gap: 12px; }
-.admin-lista { list-style: none; margin: 0; padding: 0; }
-.admin-item { border-top: 1px solid var(--line); padding-block: 16px; }
-.admin-fila { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-.admin-mini { width: 56px; height: 72px; flex: none; background: var(--surface); overflow: hidden; }
-.admin-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.admin-info { flex: 1 1 180px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.admin-info span { font-size: 0.875rem; color: var(--muted); }
-.admin-info .etiqueta { align-self: flex-start; margin-top: 4px; padding: 2px 8px; font-size: 0.75rem; font-weight: 600; background: var(--surface); color: var(--fg); }
-.mini { min-height: 44px; padding: 0 16px; font: inherit; font-size: 0.875rem; font-weight: 600; color: var(--fg); background: transparent; border: 1px solid var(--fg); border-radius: 0; cursor: pointer; }
-.mini:hover { background: var(--fg); color: var(--bg); }
-.mini.peligro { color: var(--danger); border-color: var(--danger); }
-.mini.peligro:hover { background: var(--danger); color: var(--bg); }
-.admin-extra { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; }
-.admin-det { flex: 1 1 100%; }
-.admin-det summary { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.9375rem; font-weight: 600; cursor: pointer; }
-.admin-det[open] { padding-bottom: 8px; }
-.admin-det form, .admin-det .ayuda { margin-top: 8px; }
-.admin-det .admin-form { margin-top: 12px; }
