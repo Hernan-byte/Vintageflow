@@ -8,7 +8,8 @@ export async function middleware(request) {
 
   const { response, user } = await actualizarSesion(request);
 
-  if (!user && request.nextUrl.pathname.startsWith('/cuenta')) {
+  const ruta = request.nextUrl.pathname;
+  if (!user && (ruta.startsWith('/cuenta') || ruta.startsWith('/admin'))) {
     const url = request.nextUrl.clone();
     url.pathname = '/ingresar';
     url.search = '';
