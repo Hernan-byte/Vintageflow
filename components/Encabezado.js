@@ -13,6 +13,7 @@ export default async function Encabezado() {
         vintage flow
       </Link>
       <nav className="nav" aria-label="Principal">
+        <Link href="/#drops">Drops</Link>
         <Link href="/#catalogo">Catálogo</Link>
         <Link href="/#como">Cómo comprar</Link>
         <a className="ig" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
